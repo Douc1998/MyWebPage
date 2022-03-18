@@ -1,0 +1,12 @@
+.bread-crumb-ctn {
+  display: flex;
+  align-items: center;
+
+  .item {
+    font-family: "text"; // 自定义字体
+    font-size: 16px;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+  }
+}

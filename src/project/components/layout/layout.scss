@@ -1,0 +1,84 @@
+// 1rem = 19.2px [if (1920 * 937) && (font-size = 1vw)]
+$headerHeight: 70px;
+
+:export {
+  headerHeight: $headerHeight;
+}
+
+.container {
+  position: relative;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  .header {
+    width: 100%;
+    flex: 0 0 $headerHeight;
+    // 背景色渐变
+    background-image: linear-gradient(60deg, #161b20 0%, #485563 100%);
+
+    .img-title {
+      float: left;
+      margin-left: 1.5rem;
+      height: 100%;
+      // 垂直居中
+      display: flex;
+      align-items: center;
+
+      img {
+        // 默认高度 + 右边距
+        height: 100%;
+        // 限制图片大小小于等于 header 高度
+        max-height: $headerHeight;
+        margin-right: 15px;
+      }
+
+      h1 {
+        margin: auto;
+        margin-bottom: 10px;
+        font-size: 25px;
+        font-weight: bold;
+        font-family: "title";
+        letter-spacing: 1px;
+        // 字体渐变
+        background-image: linear-gradient(to right bottom, rgb(67, 253, 253), rgb(210, 250, 255));
+        -webkit-background-clip: text;
+        color: transparent;
+      }
+    }
+    ::after {
+      content: "";
+      display: block;
+      clear: both;
+    }
+
+    // 预留功能栏
+    .func-bar {
+      float: right;
+      margin-right: 1.5rem;
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .split-line {
+    position: absolute;
+    top: $headerHeight - 2px;
+    width: 100%;
+    height: 2px;
+    background-image: linear-gradient(to right, #6de7f7 0%, rgba(72, 226, 247, 0.562) 30%, rgba(72, 85, 99, 0.425) 70%);
+  }
+
+  .main {
+    position: relative;
+    width: 100%;
+    flex: 1 1;
+    // padding: 5px;
+    overflow: hidden;
+    // 背景色渐变
+    background-image: linear-gradient(60deg, #161b20 0%, #485563 100%);
+  }
+}
