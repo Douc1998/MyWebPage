@@ -4,7 +4,7 @@ import './Index.scss';
 import { githublogo, QQ, wechat, weibo, about } from '../../icon';
 import { Link, BrowserRouter as Router } from 'react-router-dom';
 
-
+// app跳转小组件封装
 const AppLink = (props) => (
     <a
         href={props.url}
@@ -15,6 +15,7 @@ const AppLink = (props) => (
     </a>
 )
 
+// app跳转数据
 const appItem = [
     { key: 0, url: 'https://im.qq.com/index', img: QQ },
     { key: 1, url: 'https://weixin.qq.com/', img: wechat },
@@ -28,6 +29,7 @@ class Index extends Component {
         this.state = {};
     }
 
+    // App跳转组件
     createItem = (item) => {
         return (
             <AppLink key={item.key} url={item.url} img={item.img} />
@@ -56,6 +58,7 @@ class Index extends Component {
                 <div className='text'>
                     <span>{'Welcome to My Wonderland !'}</span>
                 </div>
+                {/* 按钮用link封装, 添加路由 */}
                 <Link to='/home'>
                     <Button
                         className='button'
