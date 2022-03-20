@@ -24,13 +24,14 @@
     .game-container{
         display: flex;
         justify-content: space-evenly;
-        height: 60%;
+        height: 500px;
         width: 100%;
+        
         .greedy-snake{
             display: inline-block;
             align-items: center;
             background-color: #fff;
-            width: 33%;
+            width: 500px;
             height: 100%;
             border-radius: 15px;
             box-shadow: 0px 0px 20px gray;  // 水平方向偏移、垂直方向偏移、颜色

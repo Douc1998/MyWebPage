@@ -1,6 +1,7 @@
 // 组件
 import React, { Component } from 'react'
-
+import GreedySnake from './components/GreedySnake/GreedySnake';
+import Snake from './components/GreedySnake/Snake';
 // 样式
 import './GamePage.scss'
 
@@ -17,7 +18,8 @@ export default class GamePage extends Component {
                     <span>欢迎来到我的游戏世界!</span>
                 </div>
                 <div className='game-container'>
-                    <div className='greedy-snake'>this is greedy snake</div>
+                    <div className='greedy-snake'>
+                        <Snake /></div>
                     <div className='sokoban'>this is sokoban</div>
                 </div>
             </div>

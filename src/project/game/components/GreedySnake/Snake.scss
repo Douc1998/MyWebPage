@@ -1,0 +1,53 @@
+.Snake{
+    position: inherit;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    background: transparent;
+    overflow: hidden;
+
+    .start{
+        margin-top: 15px;
+        width: 100px;
+        height: 30px;
+    }
+    .title {
+        margin-top: 10px;
+    }
+    .box{
+        /*
+        * 一种float 剧中的方式 => 
+        父元素: relative, float:left, left: 50% (overflow不可hidden) 
+        & 
+        子元素:  relative, float:left, right: 50%
+        */
+        .cols{
+            // overflow: hidden;
+            float: left;
+            position: relative;
+            left: 50%;
+            >div{ // 利float实现
+                float: left;
+                position: relative;
+                right: 50%;
+                width: 22.5px;
+                height: 21.5px;
+                box-sizing: border-box;
+                border: 2px solid #dedede;
+                border-width: 2px 2px 2px 2px; // 上 右 下 左
+                margin: -1px -1px; // 解决 “双边框”
+            } 
+            .body{
+                background: blueviolet;
+            }
+            .head{
+                background: red;   
+            }
+            .food{
+                background: gold;
+            }
+            clear: both; // 清除浮动, 换行
+        }
+ 
+    }
+}
