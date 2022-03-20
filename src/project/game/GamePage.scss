@@ -1,0 +1,49 @@
+.game-page-ctn {
+    position: relative;
+    width: 100%;
+    height: calc(100vh - 50px); // header 40px + padding 10px
+    background-image: linear-gradient(to bottom, #fbc2eb, #a6c1ee);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+    .page-title{
+        position: absolute;
+        display: inline-block;
+        text-align: center;
+        top: 5%;
+        left: 0;
+        right: 0;
+        color: white;
+        font-size: 30px;
+        font-weight: bold;
+        font-family: 'text';
+    }
+
+    .game-container{
+        display: flex;
+        justify-content: space-evenly;
+        height: 60%;
+        width: 100%;
+        .greedy-snake{
+            display: inline-block;
+            align-items: center;
+            background-color: #fff;
+            width: 33%;
+            height: 100%;
+            border-radius: 15px;
+            box-shadow: 0px 0px 20px gray;  // 水平方向偏移、垂直方向偏移、颜色
+        }
+
+        .sokoban{
+            display: inline-block;
+            align-items: center;
+            background-color: #fff;
+            width: 33%;
+            height: 100%;
+            border-radius: 15px;
+            box-shadow: 10px 10px 10px gray;
+        }
+    }
+}
