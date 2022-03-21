@@ -63,10 +63,10 @@ $headerHeight: 70px;
         font-family: 'title';
     }
 
-    .ant-btn:hover{
-        color: #fff;
-        border-color: #fff;
-        background: rgba(255, 255, 255, 0.1);
-        box-shadow: 0 0 10px rgba(50, 250, 255, 0.75);
+    .button:hover{
+        color: #fff !important;
+        border-color: #fff !important;
+        background: rgba(255, 255, 255, 0.1) !important;
+        box-shadow: 0 0 10px rgba(50, 250, 255, 0.75) !important;
     }
 }

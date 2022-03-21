@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import "./Snake.scss";
- 
+import { Button } from 'antd';
  
 const TYP = {
     normal:1,
@@ -221,8 +221,13 @@ export default class Snake extends Component{
     render(){
         return (
             <div className="Snake">
-                <button className="start" onClick={this.mainTimer}> 点击开始</button>
-                <p className='title'>分数：{this.state.count}</p>
+                <div className="button-group" >
+                    <Button onClick={this.mainTimer}>开始游戏</Button>
+                    <Button >暂停游戏</Button>
+                    <Button >重新开始</Button>
+                </div>
+                
+                <p className='title'>当前得分：{this.state.count}</p>
                 <div className="box">
                 {
                     this.state.config.map((item,index)=>{
