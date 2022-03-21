@@ -2,6 +2,7 @@
 import React, { Component } from 'react'
 import GreedySnake from './components/GreedySnake/GreedySnake';
 import Snake from './components/GreedySnake/Snake';
+import Sokoban from './components/Sokoban/Sokoban';
 // 样式
 import './GamePage.scss'
 
@@ -19,8 +20,11 @@ export default class GamePage extends Component {
                 </div>
                 <div className='game-container'>
                     <div className='greedy-snake'>
-                        <Snake /></div>
-                    <div className='sokoban'>this is sokoban</div>
+                        <Snake />
+                        </div>
+                    <div className='sokoban'>
+                        <Sokoban />
+                    </div>
                 </div>
             </div>
         )

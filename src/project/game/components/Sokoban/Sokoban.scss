@@ -1,0 +1,42 @@
+.Sokoban{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    overflow: hidden;
+
+    .game-title{
+        font-family: 'game-title';
+        font-size: 25px;
+        font-weight: bold;
+        margin-top: 5px;
+        /*
+         * css文字渐变方式
+         */
+        background-image: linear-gradient(to right , #22c1c3, #fdbb2d); // 设置背景渐变
+        background-clip: text; // 以盒子内的文字作为裁剪区域向外裁剪，文字之外的区域都将被裁剪掉
+        -webkit-text-fill-color: transparent;  // 文字填充颜色为 透明
+    }
+
+    .box{
+        text-align: start;
+        height: 400px;
+        width: 400px;
+    }
+
+    .score-text {
+        font-size: 10px;
+        align-items: center;
+    }
+
+    .button-group{
+        display: flex;
+        text-align: center;
+        align-items: center;
+        justify-content: space-evenly;
+        margin-bottom: 5px;
+    }
+}
