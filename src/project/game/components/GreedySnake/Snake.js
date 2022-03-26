@@ -22,9 +22,9 @@ export default class Snake extends Component {
             count: 0
         }
     }
-    componentWillMount() {
+    componentWillMount() { //  初始化设置
         var n = 20;
-        var arr = [];
+        var arr = []; // 初始化格网
         for (var i = 0; i < n; i++) {
             var temp = [];
             for (var j = 0; j < n; j++) {
@@ -32,7 +32,7 @@ export default class Snake extends Component {
             }
             arr.push(temp);
         }
-        var body = [
+        var body = [ // 蛇身
             { r: 6, c: 10 },
             { r: 7, c: 10 },
             { r: 8, c: 10 },

@@ -1,12 +1,12 @@
-// 定义Point类, 具有x, y坐标
+// 定义Point类, 具有行号r、列号c
 export default class Point {
     /**
      * params
-     * @param {number} x - 点在地图中的x坐标
-     * @param {number} y - 点在地图中的y坐标
+     * @param {number} r - 点在二维数组中的行号
+     * @param {number} c - 点在二维数组中的列号
      */
-    constructor(x = 0, y = 0) {
-        this.x = x;
-        this.y = y;
+    constructor(r = 0, c = 0) {
+        this.r = r;
+        this.c = c;
     }
 }
