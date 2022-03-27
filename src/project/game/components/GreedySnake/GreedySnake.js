@@ -8,6 +8,7 @@ import { Button } from 'antd';
 class GreedySnake extends Component {
     constructor(props) {
         super(props);
+        this.game = React.createRef();
         this.timer = null;
         this.state = {
             Map: new Map(20, 20),
@@ -42,6 +43,7 @@ class GreedySnake extends Component {
         }
     }
 
+    
     /**
      * 判断是否可以转向 => 主要考虑 “掉头就走” 的情况
      * @param oldDirection
@@ -93,22 +95,10 @@ class GreedySnake extends Component {
             }
         }
     }
-    /**
-     * 组件初始化时候为窗口添加键盘事件监听，并且先画出来一个默认的地图
-     */
-    componentDidMount() {
-        // 键盘监听事件
-        window.addEventListener('keypress', this.keyDown);
-        // 同步代码转异步代码, 调配优先级不高的代码靠后执行
-        setTimeout(this.myTimer, 0);
-    }
 
-    /**
-     * 组件清除时 清除 定时器 和 监听函数
-     */
-    componentWillUnmount() {
-        clearInterval(this.timer);
-        window.removeEventListener('keydown', this.keyDown)
+    // 刷新 重新渲染 => 动态添加div子元素
+    reRender = () => {
+        const divDom = this.game.current;
     }
 
     /**
@@ -124,31 +114,29 @@ class GreedySnake extends Component {
          * false => 重新渲染下一step的Map
          * */
         if (isDead) {
-            console.log('dead!')
-            this.setState({
-                start: false
-            })
+            console.log('dead!');
+            this.gameOver();
         } else {
             let newMap = Map.nextStep(direction);
             this.setState({
                 Map: newMap
-            })
+            }, this.reRender)
         }
     }
 
-    /**
-     * 蛇死了之后做的事情
-     */
+    // 蛇死了之后 重新初始化
     gameOver() {
         alert('Game Over !!!');
         const { mapWidth, mapHeight, mapSpeedInterval } = this.props;
         this.setState({
             Map: new Map(mapWidth ? mapWidth : 20, mapHeight ? mapHeight : 20),
+            start: false,
             moveDirection: Direction.RIGHT,
             speedInterval: mapSpeedInterval ? mapSpeedInterval : 200
-        });
+        }, this.reRender);
     }
 
+    // 根据属性不同绘制不同样式
     getClass = (item) => {
         switch (item) {
             case MapGoods.SNAKE_HEAD:
@@ -164,13 +152,33 @@ class GreedySnake extends Component {
         }
     }
 
+    /**
+     * 组件初始化时候为窗口添加键盘事件监听，并且先画出来一个默认的地图
+     */
+    componentDidMount() {
+        // 键盘监听事件
+        window.addEventListener('keypress', this.keyDown);
+        // 初始化地图
+        this.reRender();
+        // 同步代码转异步代码, 调配优先级不高的代码靠后执行
+        setTimeout(this.myTimer, 0);
+    }
+
+    /**
+     * 组件清除时 清除 定时器 和 监听函数
+     */
+    componentWillUnmount() {
+        clearInterval(this.timer);
+        window.removeEventListener('keydown', this.keyDown)
+    }
+
     render() {
         return (
             <div className="Snake">
                 <div className='game-title'>
                     <span>贪吃蛇</span>
                 </div>
-                <div className="box" >
+                <div className="box" ref={this.game}>
                     {
                         this.state.Map.world.map((item, index) => {
                             return <div className="cols" key={index} >
