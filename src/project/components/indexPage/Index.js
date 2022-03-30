@@ -37,8 +37,34 @@ class Index extends Component {
         )
     }
 
+    /**
+     * @param {学习笔记占位 => 这一部分只是为了学习 “重复播放动画” 的功能} 
+     * @param {point1 点击添加 “文字动态消失” 的动画效果}
+     * @param {ps: 写完笔记就删}
+     * */
+
+    // 点击 实现元素的 退出动画
+    buttonAnimate = () => {
+        // 设定animation动画属性, 实现又一次动画
+        document.querySelector('.text').style.animation = 'zoomOutDown 2.5s';
+        // 设定与 animation-duration相同的时间, 实现动画结束, 元素隐藏
+        setTimeout(() => {
+            // 隐藏元素
+            document.querySelector('.text').style.visibility = 'hidden';
+        }, 2500)
+    }
+
+    // 
     componentDidMount() {
         console.log('index page');
+        /**
+         * @param {学习笔记占位 => 这一部分只是为了学习 “重复播放动画” 的功能} 
+         * @param {point2 在初始动画结束后, 删除动画效果} 
+         * */
+        // 为了后续点击事件能够再一次触发动画, 在初始动画结束后, 清除动画
+        document.querySelector('.text').addEventListener('animationend', () => {
+            document.querySelector('.text').style.animation = 'none'
+        })
     }
 
     render() {
@@ -64,6 +90,7 @@ class Index extends Component {
                     <Button
                         className='button'
                         ghost
+                        onClick={this.buttonAnimate}
                     >
                         {'Learn More >'}
                     </Button>
