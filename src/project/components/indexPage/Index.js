@@ -3,6 +3,7 @@ import { Button } from 'antd';
 import './Index.scss';
 import { githublogo, QQ, wechat, weibo, about } from '../../icon';
 import { Link, BrowserRouter as Router } from 'react-router-dom';
+import 'animate.css';
 
 // app跳转小组件封装
 const AppLink = (props) => (

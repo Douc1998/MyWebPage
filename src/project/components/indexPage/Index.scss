@@ -12,6 +12,8 @@ $headerHeight: 70px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    animation:  fadeIn;
+    animation-duration: 0.3s;
 
     .app-link {
         position:absolute;
@@ -21,6 +23,8 @@ $headerHeight: 70px;
         align-items: center;
         top: 10px;
         right: 5px;
+        animation: bounceIn;
+        animation-duration: 2.5s;
 
         .item {
             margin: 0px 10px;
@@ -38,6 +42,8 @@ $headerHeight: 70px;
         text-align: center;
         height: auto;
         width: auto;
+        animation: flipInY; // 动画样式, 基于animate.css
+        animation-duration: 2.5s;
     }
 
     .text {
@@ -47,10 +53,12 @@ $headerHeight: 70px;
         min-height: calc(12px + 2vmin);
         width: 100%;
         margin-top: 30px;
-        font-size: calc(10px + 2vmin);
+        font-size: calc(15px + 2vmin);
         color: white;
         font-family: title; // 自定义字体
         font-weight: bold;
+        animation: flipInY; // 动画样式, 基于animate.css
+        animation-duration: 2.5s;
     }
 
     .button {
@@ -61,6 +69,8 @@ $headerHeight: 70px;
         height: auto;
         font-size: calc(10px + 1.2vmin);
         font-family: 'title';
+        animation: bounceInLeft; // 动画样式, 基于animate.css
+        animation-duration: 3.5s;
     }
 
     .button:hover{
