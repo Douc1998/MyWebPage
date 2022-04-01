@@ -1,6 +1,8 @@
+// components
 import Point from '../settings/Point'
 import MapGoods from '../settings/MapGoods';
 import Snake from './Snake';
+// 库
 import _ from 'lodash';
 
 export default class Map {
@@ -150,6 +152,7 @@ export default class Map {
         do {
             foodPoint = this.getRandomPoint();
         } while (!this.isPointBlank(foodPoint));
+    
         return foodPoint;
     }
 
@@ -160,7 +163,6 @@ export default class Map {
     getRandomPoint() {
         const r = Math.round(Math.random() * (this.rows - 1));
         const c = Math.round(Math.random() * (this.cols - 1));
-        console.log(r, c)
         return new Point(r, c);
     }
 

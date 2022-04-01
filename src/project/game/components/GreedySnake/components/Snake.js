@@ -1,6 +1,7 @@
-// 需要用到的静态类
+// components
 import Point from "../settings/Point";
 import Direction from '../settings/Direction';
+// 库
 import _ from 'lodash';
 
 export default class Snake {
@@ -9,7 +10,7 @@ export default class Snake {
      * @param {Point} head - 蛇的头
      * @param {Array} body - 蛇的身体
      */
-    constructor(head = new Point(2, 2), body = [new Point(3, 2), new Point(4, 2), new Point(5, 2), new Point(6, 2), new Point(7, 2), new Point(8, 2)]) {
+    constructor(head = new Point(2, 2), body = []) {
         this.head = head;
         this.body = body;
     }

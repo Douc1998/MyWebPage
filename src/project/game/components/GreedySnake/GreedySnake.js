@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+// components
 import Map from "./components/Map";
 import Direction from "./settings/Direction";
 import MapGoods from "./settings/MapGoods";
-import './GreedySnake.scss';
 import { Button } from 'antd';
+// style 
+import './GreedySnake.scss';
 
 class GreedySnake extends Component {
     constructor(props) {
@@ -16,8 +18,10 @@ class GreedySnake extends Component {
             moveDirection: Direction.RIGHT,
             // 游戏是否开始
             start: false,
+            // 游戏得分
+            score: 0,
             // 游戏速度
-            speedInterval: 360
+            speedInterval: 400,
         };
     }
 
@@ -38,12 +42,14 @@ class GreedySnake extends Component {
                 return Direction.RIGHT;
             case 115:
                 return Direction.DOWN;
+            case 32:
+                return 'Stop';
             default:
                 return Direction.INVALID;
         }
     }
 
-    
+
     /**
      * 判断是否可以转向 => 主要考虑 “掉头就走” 的情况
      * @param oldDirection
@@ -81,19 +87,58 @@ class GreedySnake extends Component {
     // 键盘监听事件
     keyDown = (event) => {
         const direction = this.keyCodeToDirection(event); // 按下的方向
-        const { start, moveDirection } = this.state;
-        if (start === false) { // 游戏没开始, 只要按上下左右就可以动
-            this.setState({
-                start: true,
-                moveDirection: direction
-            })
-        } else { // 游戏过程中, 要判断是否可以改变方向
-            if (this.canChangeDirection(moveDirection, direction) && direction !== Direction.INVALID) {
+        const { start, moveDirection, Map } = this.state;
+
+        // 如果按下的是空格键, 则游戏暂停
+        if (direction === 'Stop') {
+            this.stopGame()
+        }
+
+        // 判断蛇的长度, 如果只有头的话, 随便往哪走都可以动
+        const snakeBodyLength = Map.snake.body.length;
+
+        // 如果是在游戏过程中
+        if (start === true) {
+            // 如果按键不是无效按键 或者 空格键
+            if (direction !== 'Stop' && direction !== Direction.INVALID) {
+                // 如果只有头, 随便走
+                if (snakeBodyLength === 0) {
+                    this.setState({
+                        moveDirection: direction
+                    })
+                } else { // 如果有身子, 要判断是否反向
+                    if (this.canChangeDirection(moveDirection, direction)) {
+                        this.setState({
+                            moveDirection: direction
+                        })
+                    }
+                }
+            }
+        } else { // 如果是暂停
+            if (direction === 'Stop') {
                 this.setState({
-                    moveDirection: direction
-                });
+                    start: true
+                })
+            } else {
+                if (direction !== Direction.INVALID) {
+                    // 如果只有头, 随便走
+                    if (snakeBodyLength === 0) {
+                        this.setState({
+                            start: true,
+                            moveDirection: direction
+                        })
+                    } else { // 如果有身子, 要判断是否反向
+                        if (this.canChangeDirection(moveDirection, direction)) {
+                            this.setState({
+                                start: true,
+                                moveDirection: direction
+                            })
+                        }
+                    }
+                }
             }
         }
+
     }
 
     // 刷新 重新渲染 => 动态添加div子元素
@@ -109,7 +154,7 @@ class GreedySnake extends Component {
                 let grid = document.createElement('div');
                 grid.className = this.getClass(itm);
                 grid.key = index + '-' + idx;
-                cols.appendChild(grid)        
+                cols.appendChild(grid)
             })
             divDom.appendChild(cols)
         })
@@ -119,7 +164,7 @@ class GreedySnake extends Component {
      * 执行移动操作，键盘事件调用的就是这个地方
      * @param direction
      */
-    move(direction) {
+    move = (direction) => {
         const { Map } = this.state;
         const isDead = Map.isDead(direction);
         /**
@@ -132,22 +177,51 @@ class GreedySnake extends Component {
             this.gameOver();
         } else {
             let newMap = Map.nextStep(direction);
+            // 因为body长度从0开始, 所以body的长度就是得分
+            let snakeBodyLength = Map.snake.body.length;
+            // 判断是否吃到食物, 确定速度
+            let flag = (this.state.score === snakeBodyLength);
+            let speedInterval = flag ? this.state.speedInterval :
+                (this.state.speedInterval === 50) ? 50 : (this.state.speedInterval - 10)
+            
             this.setState({
-                Map: newMap
-            }, this.reRender)
+                score: snakeBodyLength,
+                Map: newMap,
+                speedInterval: speedInterval
+            }, () => {
+                this.reRender();
+                // 如果得分变了, 即吃到了食物, 则要修改定时器
+                if (flag === false) {
+                    clearInterval(this.timer); // 清除interval
+                    setTimeout(this.myTimer, 0); // 重新启用新的speed的interval
+                }
+                console.log(this.state.speedInterval)
+            })
         }
     }
 
-    // 蛇死了之后 重新初始化
-    gameOver() {
-        alert('Game Over !!!');
+    // 暂停游戏
+    stopGame = () => {
+        this.setState({
+            start: false,
+        })
+    }
+
+    // 重新开始
+    restart = () => {
         const { mapWidth, mapHeight, mapSpeedInterval } = this.props;
         this.setState({
             Map: new Map(mapWidth ? mapWidth : 20, mapHeight ? mapHeight : 20),
             start: false,
             moveDirection: Direction.RIGHT,
-            speedInterval: mapSpeedInterval ? mapSpeedInterval : 200
+            speedInterval: mapSpeedInterval ? mapSpeedInterval : 400
         }, this.reRender);
+    }
+
+    // 蛇死了之后 重新初始化
+    gameOver() {
+        alert('Game Over !!!');
+        this.restart()
     }
 
     // 根据属性不同绘制不同样式
@@ -188,29 +262,22 @@ class GreedySnake extends Component {
 
     render() {
         return (
-            <div className="Snake">
+            <div className="snake-container">
                 <div className='game-title'>
                     <span>贪吃蛇</span>
                 </div>
-                <div className="box" ref={this.game}>
-                    {/* {
-                        this.state.Map.world.map((item, index) => {
-                            return <div className="cols" key={index} >
-                                {
-                                    item.map((itm, idx) => {
-                                        return <div className={this.getClass(itm)} key={index + '-' + idx} ></div>
-                                    })
-                                }</div>
-                        })
-                    } */}
-                </div>
+                <div className="map" ref={this.game} />
                 <div className='score-text'>
-                    <span>当前得分：{this.state.count}</span>
+                    <span>当前得分：{this.state.score}</span>
                 </div>
                 <div className='button-group' >
-                    <Button onClick={this.mainTimer}>开始游戏</Button>
-                    <Button >暂停游戏</Button>
-                    <Button >重新开始</Button>
+                    <Button onClick={() => {
+                        this.setState({
+                            start: true
+                        })
+                    }}>开始游戏</Button>
+                    <Button onClick={this.stopGame}>暂停游戏</Button>
+                    <Button onClick={this.restart}>重新开始</Button>
                 </div>
             </div>
         );
