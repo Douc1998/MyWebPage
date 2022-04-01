@@ -95,7 +95,6 @@ export default class Map {
 
         // 在新地图上设置蛇的位置, 头 and 身体
         world[snake.head.r][snake.head.c] = MapGoods.SNAKE_HEAD;
-        console.log(snake.head, snake.body)
         _.forEach(snake.body, (item) => {
             world[item.r][item.c] = MapGoods.SNAKE_BODY;
         })
@@ -110,11 +109,17 @@ export default class Map {
         const { head, body } = this.snake; // 获取当前蛇的位置
         const nextHead = this.snake.getNextHead(direction); // 获取蛇头的下一位置(当时还没移动)
         // 先判断有没有咬到自己
-        _.forEach(body, (item) => {
-            if (nextHead.r === item.r && nextHead.c === item.c) {
-                return true;
+
+        /**
+         * 注意 !!! 之前这里用了forEach循环, 然后 return, 然而 return 对 forEach 无效
+         * 因为forEach()无法在所有元素都传递给调用的函数之前终止遍历
+         */
+
+        for(let i = 0; i < body.length; i++){
+            if(nextHead.r === body[i].r && nextHead.c === body[i].c){
+                return true
             }
-        })
+        }
         // 判断有没有撞墙
         return this.world[nextHead.r][nextHead.c] === MapGoods.BARRIER;
     }

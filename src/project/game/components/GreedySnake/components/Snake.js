@@ -1,6 +1,7 @@
 // 需要用到的静态类
 import Point from "../settings/Point";
-import Direction from '../settings/Direction'
+import Direction from '../settings/Direction';
+import _ from 'lodash';
 
 export default class Snake {
     /**
@@ -8,7 +9,7 @@ export default class Snake {
      * @param {Point} head - 蛇的头
      * @param {Array} body - 蛇的身体
      */
-    constructor(head = new Point(2, 2), body = [new Point(3, 2), new Point(4, 2)]) {
+    constructor(head = new Point(2, 2), body = [new Point(3, 2), new Point(4, 2), new Point(5, 2), new Point(6, 2), new Point(7, 2), new Point(8, 2)]) {
         this.head = head;
         this.body = body;
     }
@@ -23,7 +24,12 @@ export default class Snake {
         const body = this.body;
         const neck = this.body[0];
         // 记录蛇身的尾巴, 用于后续插入到body数组中
-        const oldTail = body.length === 0 ? head : body[body.length - 1];
+
+        /**
+         * 敲重点!!! 必须是 深拷贝 才行, 不然oldTail记录的只是body[-1]的地址, 在后面倒序前移的时候, oldTail也会跟着改变!!!
+         */
+
+        const oldTail = body.length === 0 ? head : _.cloneDeep(body[body.length - 1]);
 
         // 首先将蛇身倒序依次向前移动
         for (let i = body.length - 1; i > 0; i--) {
@@ -35,7 +41,7 @@ export default class Snake {
             neck.r = head.r;
             neck.c = head.c;
         }
-
+ 
         // 如果吃到了东西，新增长度就是原来尾巴的位置
         if (eatFood) {
             body.push(oldTail);

@@ -99,6 +99,20 @@ class GreedySnake extends Component {
     // 刷新 重新渲染 => 动态添加div子元素
     reRender = () => {
         const divDom = this.game.current;
+        divDom.innerHTML = ''; // 清除当前dom节点内容 
+        // 重新渲染
+        this.state.Map.world.forEach((item, index) => {
+            let cols = document.createElement('div');
+            cols.className = 'cols';
+            cols.key = index;
+            item.forEach((itm, idx) => {
+                let grid = document.createElement('div');
+                grid.className = this.getClass(itm);
+                grid.key = index + '-' + idx;
+                cols.appendChild(grid)        
+            })
+            divDom.appendChild(cols)
+        })
     }
 
     /**
@@ -179,7 +193,7 @@ class GreedySnake extends Component {
                     <span>贪吃蛇</span>
                 </div>
                 <div className="box" ref={this.game}>
-                    {
+                    {/* {
                         this.state.Map.world.map((item, index) => {
                             return <div className="cols" key={index} >
                                 {
@@ -188,7 +202,7 @@ class GreedySnake extends Component {
                                     })
                                 }</div>
                         })
-                    }
+                    } */}
                 </div>
                 <div className='score-text'>
                     <span>当前得分：{this.state.count}</span>
