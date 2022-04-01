@@ -8,7 +8,7 @@ import GamePage from '../../game/GamePage';
 // 样式
 import 'react-animated-router/animate.css'; // 引入默认的动画样式定义
 // 图片
-import { bot } from '../../icon';
+import { astronaut } from '../../icon';
 
 
 // 面包屑中的路由数据
@@ -44,7 +44,7 @@ class Home extends Component {
     return (
       <Router>
         <Layout
-          src={bot}
+          src={astronaut}
           title='DouChen的React小站'
           imgHeight='70%'
         >
