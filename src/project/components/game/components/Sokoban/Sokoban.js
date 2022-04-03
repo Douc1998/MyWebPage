@@ -10,7 +10,7 @@ export default class Sokoban extends Component {
         super(props)
         this.game = React.createRef();
         this.state = {
-            Map: new Map(20, 20),
+            Map: new Map(10, 10),
             score: 0,
         }
     }
@@ -91,9 +91,15 @@ export default class Sokoban extends Component {
     // 重新开始
     restart = () => {
         this.setState({
-            Map: new Map(20, 20),
+            Map: new Map(10, 10),
             score: 0
         }, this.reRender);
+    }
+
+    // 箱子全部推进去 进入下一关
+    nextGame = () => {
+        alert('你通关了 !!!');
+        this.restart();
     }
 
     // 初始化
@@ -104,6 +110,14 @@ export default class Sokoban extends Component {
         this.reRender();
     }
 
+    // 渲染完成后判断
+    componentDidUpdate(){
+        if(this.state.score === 4){
+            setTimeout(() => {
+                this.nextGame()
+            }, 800)
+        }
+    }
     // 组件销毁前
     componentWillUnmount() {
         window.removeEventListener('keydown', this.keyDown);
@@ -120,9 +134,8 @@ export default class Sokoban extends Component {
                     <span>当前得分：{this.state.score}</span>
                 </div>
                 <div className='button-group' >
-                    <Button>开始游戏</Button>
-                    <Button>暂停游戏</Button>
                     <Button onClick={this.restart}>重新开始</Button>
+                    <Button>下一关</Button>
                 </div>
             </div>
         )

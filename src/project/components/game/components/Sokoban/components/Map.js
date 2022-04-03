@@ -6,9 +6,9 @@ import MoveObject from './MoveObject';
 import _ from 'lodash';
 
 export default class Map {
-    constructor(rows = 20, cols = 20) {
-        this.player = new MoveObject(10, 10);
-        this.boxes = [new MoveObject(2, 2), new MoveObject(2, 17), new MoveObject(17, 2), new MoveObject(17, 17)];
+    constructor(rows = 10, cols = 10) {
+        this.player = new MoveObject();
+        this.boxes = [new MoveObject(2, 2), new MoveObject(2, 7), new MoveObject(7, 2), new MoveObject(7, 7)];
         this.rows = rows;
         this.cols = cols;
         this.world = this.initWorld();

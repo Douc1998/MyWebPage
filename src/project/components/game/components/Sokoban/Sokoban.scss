@@ -30,25 +30,36 @@
                 float: left;
                 position: relative;
                 right: 50%;
-                width: 22.5px;
-                height: 21.5px;
+                width: 40px;
+                height: 40px;
                 box-sizing: border-box;
                 border: 2px solid #dedede;
                 border-width: 2px 2px 2px 2px; // 上 右 下 左
                 margin: -1px -1px; // 解决 “双边框”
             } 
             .player{
-                background: blueviolet;
+                background-color: #dedede;
+                background-image: url('../../../../icon/walker.png');
+                background-size: cover;
+                background-position: center;
             }
             .box{
-                background: rgb(83, 50, 0);   
+                background-color: #dedede;
+                background-image: url('../../../../icon/box.png');
+                background-size: cover;
+                background-position: center;  
             }
             .reward{
-                background: gold;
-                border-radius: 100%;
+                background-color: #dedede;
+                background-image: url('../../../../icon/coin.png');
+                background-size: cover;
+                background-position: center;
             }
             .achieve{
-                background: rgb(247, 82, 6);
+                background-color: #dedede;
+                background-image: url('../../../../icon/gold.png');
+                background-size: cover;
+                background-position: center;
             }
             .blank{
                 background: #dedede;

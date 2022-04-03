@@ -3,7 +3,7 @@ import Direction from "../settings/Direction";
 import MapGoods from "../settings/MapGoods";
 
 export default class MoveObject{
-    constructor(r = 10, c = 10){
+    constructor(r = 5, c = 5){
         this.loc = new Point(r, c)
     }
     /**

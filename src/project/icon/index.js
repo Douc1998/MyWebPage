@@ -26,4 +26,4 @@ export {default as QQ} from './QQ.png';
 export {default as wechat} from './wechat.png';
 export {default as weibo} from './weibo.png';
 export {default as about} from './about.png';
-export {default as astronaut} from './astronaut.png'
+export {default as astronaut} from './astronaut.png';

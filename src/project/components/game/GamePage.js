@@ -19,7 +19,7 @@ export default class GamePage extends Component {
                 </div>
                 <div className='game-container'>
                     <div className='greedy-snake'>
-                        {/* <GreedySnake /> */}
+                        <GreedySnake />
                         </div>
                     <div className='sokoban'>
                         <Sokoban />
