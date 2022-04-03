@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import AnimatedRouter from 'react-animated-router'; // AnimatedRouter组件
 import BreadCrumb from '../bread-crumb/BreadCrumb';
 import Layout from '../layout/Layout';
-import GamePage from '../../game/GamePage';
+import GamePage from '../game/GamePage';
 // 样式
 import 'react-animated-router/animate.css'; // 引入默认的动画样式定义
 // 图片

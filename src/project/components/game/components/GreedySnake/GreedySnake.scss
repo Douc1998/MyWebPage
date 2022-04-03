@@ -53,13 +53,6 @@
             .food{
                 background: gold;
                 border-radius: 100%;
-                // 动画效果
-                // animation-name: instant-scale; // 动画名称
-                // animation-direction: alternate; // 动画在奇数次（1、3、5...）正向播放，在偶数次（2、4、6...）反向播放。
-                // animation-timing-function: linear; // 动画执行方式，linear：匀速；ease：先慢再快后慢；ease-in：由慢速开始；ease-out：由慢速结束；ease-in-out：由慢速开始和结束；
-                // animation-delay: 0s; // 动画延迟时间
-                // animation-iteration-count: infinite; //  动画播放次数，infinite：一直播放
-                // animation-duration: 0.4s; // 动画完成时间
             }
             .blank{
                 background: #dedede;
@@ -84,23 +77,4 @@
         justify-content: space-evenly;
         margin-bottom: 5px;
     }
- 
-    // 动画 大小缩放
-	@keyframes instant-scale {
-		 0%{
-		      transform: scale(1);
-		   }
-		   25%{
-		      transform: scale(0.8);
-		   }
-		   50%{
-		      transform: scale(0.6);
-		   }
-		   75%{
-		      transform: scale(0.8);
-		   }
-		   100%{
-		      transform: scale(1);
-		   }
-	}
 }

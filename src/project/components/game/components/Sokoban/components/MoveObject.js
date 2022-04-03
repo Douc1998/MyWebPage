@@ -1,16 +1,17 @@
 import Point from "../settings/Point";
 import Direction from "../settings/Direction";
+import MapGoods from "../settings/MapGoods";
 
 export default class MoveObject{
     constructor(r = 10, c = 10){
         this.loc = new Point(r, c)
     }
     /**
-     * 获取下一位置
+     * 获取下一位置, 但没有移动
      * @param direction
      * @return {boolean|{x: number, y: number}}
      */
-     getNextHead(direction) {
+     getNextLoc(direction) {
         // 获取当前位置
         const realLoc = this.loc
         const nextLoc = new Point(realLoc.r, realLoc.c);
@@ -31,4 +32,31 @@ export default class MoveObject{
 
         return nextLoc;
     }
+
+    /**
+     * 判断是否可以移动
+     * @param {string} direction 
+     */
+    canMove = (direction, world) => {
+        const nextLoc = this.getNextLoc(direction);
+       if(
+           world[nextLoc.r][nextLoc.c] !== MapGoods.BARRIER && 
+           world[nextLoc.r][nextLoc.c] !== MapGoods.BOX &&
+           world[nextLoc.r][nextLoc.c] !== MapGoods.ACHIEVE){
+           return true
+       }else{
+           return false
+       }
+
+    }
+
+    /**
+     * 移动一步
+     * @param {string} direction 
+     */
+    moveStep = (direction) => {
+        const nextLoc = this.getNextLoc(direction)
+        this.loc = nextLoc
+    }
+
 }
