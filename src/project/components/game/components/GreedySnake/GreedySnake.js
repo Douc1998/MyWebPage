@@ -240,6 +240,11 @@ class GreedySnake extends Component {
         }
     }
 
+    // 退出该游戏模块
+    exitGame = () => {
+        this.props.setStatus('snake')
+    }
+
     /**
      * 组件初始化时候为窗口添加键盘事件监听，并且先画出来一个默认的地图
      */
@@ -276,8 +281,8 @@ class GreedySnake extends Component {
                             start: true
                         })
                     }}>开始游戏</Button>
-                    <Button onClick={this.stopGame}>暂停游戏</Button>
                     <Button onClick={this.restart}>重新开始</Button>
+                    <Button onClick={this.exitGame}>退出游戏</Button>
                 </div>
             </div>
         );

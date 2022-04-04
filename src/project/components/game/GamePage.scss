@@ -19,6 +19,7 @@
         font-size: 35px;
         font-weight: bold;
         font-family: 'game-title';
+        animation: backInDown 1s ease 0s;
     }
 
     .game-container{
@@ -28,23 +29,105 @@
         width: 100%;
         
         .greedy-snake{
-            display: inline-block;
+            display: none;
             align-items: center;
             background-color: #fff;
-            width: 33%;
+            width: 500px;
             height: 100%;
             border-radius: 15px;
             box-shadow: 0px 0px 20px gray;  // 水平方向偏移、垂直方向偏移、颜色
+
+            .snake-mask {
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.4);
+                position: relative;
+                border-radius: inherit;
+                background-image: url('../../icon/background.webp');
+                // background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                animation: fadeIn 1s ease-out 0s;
+            
+                .snake-stop-button {
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    margin: auto;
+                    width: 50px;
+                    height: 50px;
+                    background-color: rgba(0, 0, 0, 0.4);
+                    border-color: white;
+                    border-width: 0.5px;
+                    border-radius: 20%;
+                }
+            
+                .snake-stop-button:hover{
+                    color: rgba(50, 250, 255, 0.75) !important;
+                    border-color: #fff !important;
+                    background: rgba(0, 0, 0, 0.4) !important;
+                    box-shadow: 0 0 10px rgba(50, 250, 255, 0.75) !important;
+                }
+            
+                .snake-stop-button:focus {
+                    color: rgba(249, 252, 99, 0.979) !important;
+                    background: rgba(0, 0, 0, 0.4) !important;
+                    box-shadow: 0 0 10px rgba(249, 252, 99, 0.979) !important;
+                }
+            }
         }
 
         .sokoban{
-            display: inline-block;
+            display: none;
             align-items: center;
             background-color: #fff;
             width: 500px;
             height: 100%;
             border-radius: 15px;
             box-shadow: 10px 10px 10px gray;
+
+            .sokoban-mask {
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.4);
+                position: relative;
+                border-radius: inherit;
+                background-image: url('../../icon/background.webp');
+                // background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                animation: fadeIn 1s ease 0s;
+            
+                .sokoban-stop-button {
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    margin: auto;
+                    width: 50px;
+                    height: 50px;
+                    background-color: rgba(0, 0, 0, 0.4);
+                    border-color: white;
+                    border-width: 0.5px;
+                    border-radius: 20%;
+                }
+            
+                .sokoban-stop-button:hover{
+                    color: rgba(50, 250, 255, 0.75) !important;
+                    border-color: #fff !important;
+                    background: rgba(0, 0, 0, 0.4) !important;
+                    box-shadow: 0 0 10px rgba(50, 250, 255, 0.75) !important;
+                }
+            
+                .sokoban-stop-button:focus {
+                    color: rgba(249, 252, 99, 0.979) !important;
+                    background: rgba(0, 0, 0, 0.4) !important;
+                    box-shadow: 0 0 10px rgba(249, 252, 99, 0.979) !important;
+                }
+            }
         }
     }
 }

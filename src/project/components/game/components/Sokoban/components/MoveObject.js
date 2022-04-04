@@ -1,3 +1,4 @@
+// components
 import Point from "../settings/Point";
 import Direction from "../settings/Direction";
 import MapGoods from "../settings/MapGoods";

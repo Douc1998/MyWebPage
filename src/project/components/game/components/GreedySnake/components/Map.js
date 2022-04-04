@@ -18,7 +18,7 @@ export default class Map {
      * 根据宽高度初始化一个地图的世界
      * @return {[[]]}
      */
-    initWorld() {
+    initWorld = () => {
         const rows = this.rows;
         const cols = this.cols;
         const snake = this.snake;
@@ -54,8 +54,9 @@ export default class Map {
     /**
      * 像某个方向移动一下蛇
      * @param direction {Direction}
+     * @return {this}
      */
-    nextStep(direction) {
+    nextStep = (direction) => {
         const rows = this.rows;
         const cols = this.cols;
         const snake = this.snake;
@@ -107,7 +108,7 @@ export default class Map {
      * 判断蛇是不是死了
      * @param isHead {direction} 移动后的蛇头位置，因为每次移动，都是蛇头在最前面，所以只判断蛇头位置就可以
      */
-    isDead(direction) {
+    isDead = (direction) => {
         const { head, body } = this.snake; // 获取当前蛇的位置
         const nextHead = this.snake.getNextHead(direction); // 获取蛇头的下一位置(当时还没移动)
         // 先判断有没有咬到自己
@@ -131,12 +132,12 @@ export default class Map {
      * 判断蛇是不是吃到了东西
      * @param snakeHead {Point} 移动后的蛇头位置，因为每次移动，都是蛇头在最前面，所以只判断蛇头位置就可以
      */
-    snakeEatFood(snakeHead) {
+    snakeEatFood = (snakeHead) => {
         return this.world[snakeHead.r][snakeHead.c] === MapGoods.FOOD;
     }
 
     // 初始化食物
-    initFood() {
+    initFood = () => {
         // 初始化食物
         let foodPoint = this.addFoodToWorld()
         this.world[foodPoint.r][foodPoint.c] = MapGoods.FOOD
@@ -146,7 +147,7 @@ export default class Map {
      * 在地图中随机生成一个食物坐标，不会再墙壁或者snake的位置生成
      * @return {Point}
      */
-    addFoodToWorld() {
+    addFoodToWorld = () => {
         let foodPoint;
         // 只要生成的随机点正在被world或者snake使用，就重新生成
         do {
@@ -160,7 +161,7 @@ export default class Map {
      * 在地图中随机生成一个点
      * @return {Point}
      */
-    getRandomPoint() {
+    getRandomPoint = () => {
         const r = Math.round(Math.random() * (this.rows - 1));
         const c = Math.round(Math.random() * (this.cols - 1));
         return new Point(r, c);
@@ -171,7 +172,7 @@ export default class Map {
      * @param point
      * @return {boolean}
      */
-    isPointBlank(point) {
+    isPointBlank = (point) => {
         return this.world[point.r][point.c] === MapGoods.BLANK;
     }
 }
