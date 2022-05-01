@@ -15,5 +15,4 @@ export default class MapGoods {
     static BOX = 'BOX';
     static REWARD = 'REWARD';
     static ACHIEVE = 'ACHIEVE';
-
 }

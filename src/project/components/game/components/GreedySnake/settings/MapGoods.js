@@ -13,5 +13,4 @@ export default class MapGoods {
     static SNAKE_HEAD = 'SNAKE_HEAD';
     static SNAKE_BODY = 'SNAKE_BODY';
     static FOOD = 'FOOD';
-
 }

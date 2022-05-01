@@ -144,7 +144,7 @@ export default class Map {
     }
 
     /**
-     * 在地图中随机生成一个食物坐标，不会再墙壁或者snake的位置生成
+     * 在地图中随机生成一个食物坐标，不会在墙壁或者snake的位置生成
      * @return {Point}
      */
     addFoodToWorld = () => {
