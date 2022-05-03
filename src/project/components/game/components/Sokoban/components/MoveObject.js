@@ -30,7 +30,6 @@ export default class MoveObject{
                 nextLoc.c += 1;
                 break;
         }
-
         return nextLoc;
     }
 
@@ -48,7 +47,6 @@ export default class MoveObject{
        }else{
            return false
        }
-
     }
 
     /**
@@ -59,5 +57,4 @@ export default class MoveObject{
         const nextLoc = this.getNextLoc(direction)
         this.loc = nextLoc
     }
-
 }
